@@ -1,0 +1,19 @@
+Daftar Menu ::
+A. Admin
+  1. Dashboard
+  2. Data Induk
+     - Data Pengguna
+     - Data WBP
+  3. Layanan
+     - Kunjungan Video Call
+     - Penitipan Barang
+  4. Profile
+  5. Tentang Aplikasi
+
+B. User
+  1. Dashboard
+  2. Layanan
+     - Kunjungan Video Call
+     - Penitipan Barang
+  3. Profile
+  4. Tentang Aplikasi
