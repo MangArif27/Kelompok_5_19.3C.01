@@ -52,3 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Admin_SIPL';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+//Route Page
+$route['index'] = 'Admin_SIPL';
+$route['Admin/Data-Pengguna'] = 'page/pengguna';
