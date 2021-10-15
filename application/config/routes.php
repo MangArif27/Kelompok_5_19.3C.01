@@ -55,4 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 //Route Page
 $route['Dashboard'] = 'Admin_SIPL';
-$route['Data-Pengguna'] = 'page/pengguna';
+$route['Data-Pengguna'] = 'page/data_pengguna';
+$route['Data-WBP'] = 'page/data_wbp';
+$route['Histori-Pendaftaran'] = 'page/histori_pendaftar';
+$route['Counter-Cetak-Tiket'] = 'page/cetak_ticket';
