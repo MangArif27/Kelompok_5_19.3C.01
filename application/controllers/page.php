@@ -21,6 +21,6 @@ class page extends CI_Controller {
 	 public function pengguna()
  	{
  		//$this->load->view('welcome_message');
-     view('page._data_pengguna');
+     view('page.admin._data_pengguna');
  	}
 }

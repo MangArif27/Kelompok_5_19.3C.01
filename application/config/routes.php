@@ -54,5 +54,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //Route Page
-$route['index'] = 'Admin_SIPL';
-$route['Admin/Data-Pengguna'] = 'page/pengguna';
+$route['Dashboard'] = 'Admin_SIPL';
+$route['Data-Pengguna'] = 'page/pengguna';
