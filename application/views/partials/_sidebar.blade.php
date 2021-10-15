@@ -14,14 +14,14 @@
         <a href="#"><i class="fa fa-database"></i> <span class="nav-label">Data Induk </span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse">
           <li><a href="Data-Pengguna">Data Pengguna</a></li>
-          <li><a href="Admin/Data-WBP">Data WBP</a></li>
+          <li><a href="Data-WBP">Data WBP</a></li>
         </ul>
       </li>
       <li>
         <a href="#"><i class="fa fa-pencil-square-o"></i> <span class="nav-label">Layanan </span><span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse">
-          <li><a href="Admin/Layanan-Video-Call">Layanan Video Call <span class="fa arrow label label-warning float-right">16/24</span></a></li>
-          <li><a href="Admin/Layanan-Penitipan-Barang">Layanan Penitipan Barang <span class="fa arrow label label-warning float-right">16/24</span></a></li>
+          <li><a href="Histori-Pendaftaran">History Pendaftar </a></li>
+          <li><a href="Counter-Cetak-Tiket">Counter Cetak Tiket </a></li>
         </ul>
       </li>
       <li>

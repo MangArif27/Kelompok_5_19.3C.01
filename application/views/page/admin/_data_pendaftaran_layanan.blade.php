@@ -6,9 +6,9 @@
     <div class="col-lg-12">
       <div class="ibox ">
         <div class="ibox-title">
-          <h5>Data Warga Binaan Pemasyarakatan</h5>
+          <h5>Daftar Masyarakat Pendaftar Layanan Pemasyarakatan</h5>
           <div class="ibox-tools">
-            <button class="btn btn-info " type="button"><i class="fa fa-upload"></i> Upload WBP</button>
+            <button class="btn btn-info " type="button"><i class="fa fa-upload"></i> Tambah Data</button>
           </div>
         </div>
         <div class="ibox-content">
@@ -19,8 +19,9 @@
                 <tr>
                   <th>No</th>
                   <th>Nama WBP</th>
-                  <th>Kejahatan</th>
-                  <th>Tgl Registrasi</th>
+                  <th>Tgl Pelaksanaan</th>
+                  <th>Jenis Layanan</th>
+                  <th>Kode Ticket</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -28,12 +29,11 @@
                 <tr class="gradeX">
                   <td>1</td>
                   <td>jajang Bin Nurrohmat</td>
-                  <td>Pencurian</td>
-                  <td class="center">13 Oktober 2021</td>
+                  <td>15/10/2021</td>
+                  <td class="center">Video Call</td>
+                  <td class="center">XKITQ</td>
                   <td class="center">
-                    <a class="btn btn-primary btn-rounded" href="#"><i class="fa fa-pencil"></i> Edit</a>
-                    <a class="btn btn-warning btn-rounded" href="#"><i class="fa fa-eye"></i> Lihat</a>
-                    <a class="btn btn-danger btn-rounded" href="#"><i class="fa fa-trash"></i> Hapus</a>
+                    <a class="btn btn-warning btn-rounded" href="#"><i class="fa fa-pencil"></i> Proses</a>
                   </td>
                 </tr>
               </tbody>
