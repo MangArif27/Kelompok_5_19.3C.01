@@ -4,8 +4,8 @@
 <div class="row">
   <div class="col-lg-12">
     <h5>Grafik Penggunaan Layanan Pemasyarakatan</h5>
-    <div class="flot-chart m-b-xl">
-      <div class="flot-chart-content" id="flot-dashboard5-chart"></div>
+    <div class="col-md-12">
+      <canvas id="myChart"></canvas>
     </div>
   </div>
 </div>
