@@ -45,7 +45,7 @@
           <i class="fa fa-drivers-license fa-5x"></i>
         </div>
         <div class="col-8 text-right">
-          <span> Pendaftar Hari Besok</span>
+          <span> Pendaftar Besok</span>
           <h2 class="font-bold">25 </h2>
         </div>
       </div>
