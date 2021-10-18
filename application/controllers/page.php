@@ -38,4 +38,14 @@ class page extends CI_Controller {
 		//$this->load->view('welcome_message');
 		view('page.admin._cetak_ticket');
 	}
+	public function  profile()
+	{
+		//$this->load->view('welcome_message');
+		view('page.admin._profile');
+	}
+	public function  about()
+	{
+		//$this->load->view('welcome_message');
+		view('page.admin._tentang_aplikasi');
+	}
 }
