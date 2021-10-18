@@ -25,10 +25,10 @@
         </ul>
       </li>
       <li>
-        <a href="Page/Profile"><i class="fa fa-id-card-o"></i> <span class="nav-label">Profile </span>  </a>
+        <a href="Profile"><i class="fa fa-id-card-o"></i> <span class="nav-label">Profile </span>  </a>
       </li>
       <li>
-        <a href="Page/Tentang-Aplikasi"><i class="fa fa-gears"></i> <span class="nav-label">Tentang Aplikasi</span></a>
+        <a href="Tentang-Aplikasi"><i class="fa fa-gears"></i> <span class="nav-label">Tentang Aplikasi</span></a>
       </li>
     </ul>
   </div>
