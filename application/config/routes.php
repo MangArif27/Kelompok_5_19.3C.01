@@ -59,3 +59,5 @@ $route['Data-Pengguna'] = 'page/data_pengguna';
 $route['Data-WBP'] = 'page/data_wbp';
 $route['Histori-Pendaftaran'] = 'page/histori_pendaftar';
 $route['Counter-Cetak-Tiket'] = 'page/cetak_ticket';
+$route['Profile'] = 'page/profile';
+$route['Tentang-Aplikasi'] = 'page/about';
