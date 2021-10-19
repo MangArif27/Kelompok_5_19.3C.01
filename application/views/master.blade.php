@@ -2,6 +2,9 @@
 <html>
 @include('partials._head')
 <body>
+  <?php
+  $level=$_SESSION['level'];
+   ?>
   <div id="wrapper">
     @include('partials._sidebar')
     <div id="page-wrapper" class="gray-bg dashbard-1">

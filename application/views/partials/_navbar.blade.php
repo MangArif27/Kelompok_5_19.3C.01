@@ -8,7 +8,7 @@
         <span class="m-r-sm text-muted welcome-message">Selamat Datang di Layanan Keluarga WBP</span>
       </li>
       <li>
-        <a href="login.html">
+        <a href="Proses/Logout">
           <i class="fa fa-sign-out"></i> Log out
         </a>
       </li>

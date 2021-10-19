@@ -1,5 +1,6 @@
 <nav class="navbar-default navbar-static-side" role="navigation">
   <div class="sidebar-collapse">
+    @if($level=="Admin")
     <ul class="nav metismenu" id="side-menu">
       <li class="nav-header">
         @include('partials._profile')
@@ -31,5 +32,27 @@
         <a href="Tentang-Aplikasi"><i class="fa fa-gears"></i> <span class="nav-label">Tentang Aplikasi</span></a>
       </li>
     </ul>
+    @elseif($level=="User")
+    <ul class="nav metismenu" id="side-menu">
+      <li class="nav-header">
+        @include('partials._profile')
+        <div class="logo-element">
+          SIPL
+        </div>
+      </li>
+      <li>
+        <a href="Dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards </span></a>
+      </li>
+      <li>
+        <a href="Layanan-Pendaftaran"><i class="fa fa-pencil-square-o"></i> <span class="nav-label">Layanan Pendaftaran</span></a>
+      </li>
+      <li>
+        <a href="Profile"><i class="fa fa-id-card-o"></i> <span class="nav-label">Profile </span>  </a>
+      </li>
+      <li>
+        <a href="Tentang-Aplikasi"><i class="fa fa-gears"></i> <span class="nav-label">Tentang Aplikasi</span></a>
+      </li>
+    </ul>
+    @endif
   </div>
 </nav>
