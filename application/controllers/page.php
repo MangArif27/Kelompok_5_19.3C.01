@@ -2,7 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class page extends CI_Controller {
-
+	function __construct(){
+		parent::__construct();
+		$this->load->model('m_user');
+	}
 	/**
 	* Index Page for this controller.
 	*
@@ -21,31 +24,32 @@ class page extends CI_Controller {
 	public function data_pengguna()
 	{
 		//$this->load->view('welcome_message');
-		view('page.admin._data_pengguna');
+		$data['user'] = $this->m_user->tmpl_user()->result();
+		view('page._data_pengguna', $data);
 	}
 	public function data_wbp()
 	{
 		//$this->load->view('welcome_message');
-		view('page.admin._data_wbp');
+		view('page._data_wbp');
 	}
 	public function histori_pendaftar()
 	{
 		//$this->load->view('welcome_message');
-		view('page.admin._data_pendaftaran_layanan');
+		view('page._data_pendaftaran_layanan');
 	}
 	public function cetak_ticket()
 	{
 		//$this->load->view('welcome_message');
-		view('page.admin._cetak_ticket');
+		view('page._cetak_ticket');
 	}
 	public function  profile()
 	{
 		//$this->load->view('welcome_message');
-		view('page.admin._profile');
+		view('page._profile');
 	}
 	public function  about()
 	{
 		//$this->load->view('welcome_message');
-		view('page.admin._tentang_aplikasi');
+		view('page._tentang_aplikasi');
 	}
 }
