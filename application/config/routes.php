@@ -54,8 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //Route Page
-$route['Login'] = 'Admin_SIPL/login';
 $route['Dashboard'] = 'Admin_SIPL';
+$route['Login'] = 'Admin_SIPL/login';
+$route['Registrasi'] = 'Admin_SIPL/registrasi';
 $route['Data-Pengguna'] = 'page/data_pengguna';
 $route['Data-WBP'] = 'page/data_wbp';
 $route['Histori-Pendaftaran'] = 'page/histori_pendaftar';
@@ -65,4 +66,5 @@ $route['Tentang-Aplikasi'] = 'page/about';
 
 //Route Proses
 $route['Proses/Login'] = 'Admin_SIPL/proseslogin';
+$route['Proses/Registrasi'] = 'Admin_SIPL/prosesregistrasi';
 $route['Proses/Logout'] = 'Admin_SIPL/logout';
