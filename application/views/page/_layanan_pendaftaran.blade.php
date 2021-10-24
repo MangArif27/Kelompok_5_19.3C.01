@@ -6,7 +6,7 @@
     <div class="col-lg-12">
       <div class="ibox ">
         <div class="ibox-title">
-          <h5>Pendaftaran Layanan Pemasyarakatan</h5>
+          <h5>Formulir Pendaftaran Layanan Pemasyarakatan</h5>
           <div class="ibox-tools">
             <button class="btn btn-info " type="button"><i class="fa fa-upload"></i> Tambah</button>
           </div>

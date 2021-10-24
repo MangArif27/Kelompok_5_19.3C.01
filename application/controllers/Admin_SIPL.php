@@ -28,14 +28,18 @@ class Admin_SIPL extends CI_Controller {
 			redirect('Proses/Logout','refresh');
 		}
 		else {
-			$session['level'] = $this->session->userdata('level');
-			view('page._dashboard', $session);
+			view('page._dashboard');
 		}
 	}
 	public function login()
 	{
 		//$this->load->view('welcome_message');
 		view('partials._login');
+	}
+	public function registrasi()
+	{
+		//$this->load->view('welcome_message');
+		view('partials._registrasi');
 	}
 	function proseslogin(){
 		$username = htmlspecialchars($this->input->post('NoIdentitas',TRUE),ENT_QUOTES);
@@ -60,15 +64,98 @@ class Admin_SIPL extends CI_Controller {
 				);
 				$this->session->set_userdata($user_data);
 			}
-			if ($this->session->userdata('level') == 'Admin')
+			if ($this->session->userdata('level') == 'Admin' || $this->session->userdata('level') == 'User' )
 			{
-				redirect('Dashboard'.$session);
+				redirect('Dashboard');
 			}
-			else
+			else if ($this->session->userdata('level') == 'Pending')
 			{
-				redirect('Dashboard'.$session);
+				$this->session->unset_userdata($user_data);
+				$this->session->set_flashdata('message_login_error', 'Login Gagal, akun anda belum disetujui oleh admin!');
+				redirect('Login');
 			}
 		}
+		$this->session->unset_userdata($user_data);
+		$this->session->set_flashdata('message_login_error', 'Login Gagal, pastikan username dan passwrod benar!');
+		redirect('Login');
+	}
+	public function prosesregistrasi()
+	{
+		//$this->load->view('welcome_message');
+		$date = date("Y-m-d");
+		$config['upload_path']         = FCPATH.'assets/images/';  // folder upload
+		$config['allowed_types']        = 'gif|jpg|jpeg|png'; // jenis file
+		$config['overwrite']            = true;
+		$this->load->library('upload', $config);
+		if ( ! $this->upload->do_upload('Photo')) //sesuai dengan name pada form
+		{
+			$this->upload->display_errors();
+		}
+		else {
+			$UploadPhoto = $this->upload->data();
+			$Photo =$UploadPhoto['file_name'];
+		}
+		$configscan['upload_path']         = FCPATH.'assets/images/';  // folder upload
+		$configscan['allowed_types']        = 'gif|jpg|jpeg|png'; // jenis file
+		$configscan['overwrite']            = true;
+		$this->load->library('upload', $configscan);
+		if ( ! $this->upload->do_upload('ScanIdentitas')) //sesuai dengan name pada form
+		{
+			$this->upload->display_errors();
+		}
+		else {
+			$UploadScanIdentitas = $this->upload->data();
+			$ScanIdentitas = $UploadScanIdentitas['file_name'];
+		}
+		$data_member = array(
+			'no_identitas' =>$this->input->post('NoIdentitas'),
+			'nama' =>$this->input->post('Nama'),
+			'jenis_kelamin' =>$this->input->post('JenisKelamin'),
+			'alamat' =>$this->input->post('Alamat'),
+			'no_handphone' =>$this->input->post('NoHandphone'),
+			'email' =>$this->input->post('Email'),
+			'photo' => $Photo,
+			'scan_identitas' => $ScanIdentitas,
+			'password' => md5($this->input->post('Password')),
+			'level' => "Pending",
+			'button' => "btn-danger",
+			'tgl_registrasi' => $date
+		);
+		$this->m_user->auth_registrasi($data_member);
+		$this->session->set_flashdata('message_login_success', 'Registrasi berhasil, akun anda sedang di validasi oleh admin !');
+		redirect('Login');
+	}
+	function prosesupdate($id)
+	{
+		$NoInduk = array(
+			'no_identitas' => $id,
+		);
+		$Level = $this->input->post('Level');
+		if($Level=="Admin")
+		{
+			$Button = "btn-success";
+		}
+		else if($Level=="User")
+		{
+			$Button = "btn-warning";
+		}
+		else
+		{
+			$Button = "btn-danger";
+		}
+		$data = array(
+			'jenis_kelamin' =>$this->input->post('JenisKelamin'),
+			'alamat' =>$this->input->post('Alamat'),
+			'no_handphone' =>$this->input->post('NoHandphone'),
+			'email' => $this->input->post('Email'),
+			'photo' => $Photo,
+			'scan_identitas' => $ScanIdentitas,
+			'password' => md5($this->input->post('Password')),
+			'level' => $this->input->post('Level'),
+			'button' => $Button,
+		);
+		$this->m_user->update_user($NoInduk,$data,'user');
+		redirect('Data-Pengguna');
 	}
 	function logout()
 	{

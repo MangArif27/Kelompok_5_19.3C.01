@@ -3,7 +3,8 @@
 @include('partials._head')
 <body>
   <?php
-  $level=$_SESSION['level'];
+    $CI = get_instance();
+    $level=$_SESSION['level'];
    ?>
   <div id="wrapper">
     @include('partials._sidebar')
