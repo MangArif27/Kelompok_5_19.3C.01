@@ -54,15 +54,23 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //Route Page
-$route['Login'] = 'Admin_SIPL/login';
 $route['Dashboard'] = 'Admin_SIPL';
-$route['Data-Pengguna'] = 'page/data_pengguna';
-$route['Data-WBP'] = 'page/data_wbp';
-$route['Histori-Pendaftaran'] = 'page/histori_pendaftar';
-$route['Counter-Cetak-Tiket'] = 'page/cetak_ticket';
-$route['Profile'] = 'page/profile';
-$route['Tentang-Aplikasi'] = 'page/about';
+$route['Login'] = 'Admin_SIPL/Login';
+$route['Registrasi'] = 'Admin_SIPL/Registrasi';
+$route['Data-Pengguna'] = 'page/DataPengguna';
+$route['Data-WBP'] = 'page/DataWBP';
+$route['Histori-Pendaftaran'] = 'page/HistoriPendaftaran';
+$route['Counter-Cetak-Tiket'] = 'page/CetakTiket';
+$route['Profile'] = 'page/Profile';
+$route['Tentang-Aplikasi'] = 'page/About';
 
 //Route Proses
-$route['Proses/Login'] = 'Admin_SIPL/proseslogin';
-$route['Proses/Logout'] = 'Admin_SIPL/logout';
+$route['Proses/Login'] = 'Admin_SIPL/ProsesLogin';
+$route['Proses/Registrasi'] = 'Admin_SIPL/ProsesRegistrasi';
+$route['Proses/Logout'] = 'Admin_SIPL/Logout';
+
+$route['Proses/Update/'.$this->uri->segment(3)] = 'Admin_SIPL/ProsesUpdate/'.$this->uri->segment(3);
+
+$route['Proses/Tambah/Pengguna'] = 'Admin_SIPL/ProsesTambahPengguna';
+
+$route['Proses/Delete/Pengguna/'.$this->uri->segment(4)] = 'Admin_SIPL/DeletePengguna/'.$this->uri->segment(4);
