@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin_SIPL extends CI_Controller {
 	function __construct(){
 		parent::__construct();
+		$this->load->helper("file");
 		$this->load->model('m_user');
 	}
 	/**
@@ -21,7 +22,7 @@ class Admin_SIPL extends CI_Controller {
 	* map to /index.php/welcome/<method_name>
 	* @see https://codeigniter.com/user_guide/general/urls.html
 	*/
-	public function index()
+	public function Index()
 	{
 		//$this->load->view('welcome_message');
 		if($this->session->userdata('login') !== 'login'){
@@ -31,17 +32,17 @@ class Admin_SIPL extends CI_Controller {
 			view('page._dashboard');
 		}
 	}
-	public function login()
+	public function Login()
 	{
 		//$this->load->view('welcome_message');
 		view('partials._login');
 	}
-	public function registrasi()
+	public function Registrasi()
 	{
 		//$this->load->view('welcome_message');
 		view('partials._registrasi');
 	}
-	function proseslogin(){
+	function ProsesLogin(){
 		$username = htmlspecialchars($this->input->post('NoIdentitas',TRUE),ENT_QUOTES);
 		$password = htmlspecialchars($this->input->post('Password',TRUE),ENT_QUOTES);
 
@@ -59,13 +60,21 @@ class Admin_SIPL extends CI_Controller {
 					'jenis_kelamin' => $data->jenis_kelamin,
 					'level' => $data->level,
 					'button' => $data->button,
-					'tgl_registrasi' => $data->tgl_registrasi,
-					'login' => "login"
+					'login' => "login",
+					'created' => $data->created
 				);
 				$this->session->set_userdata($user_data);
 			}
+			$NoInduk = array(
+				'no_identitas' =>$username,
+			);
+			$date = date("Y-m-d H:m:s");
+			$data = array(
+				'updated' => $date,
+			);
 			if ($this->session->userdata('level') == 'Admin' || $this->session->userdata('level') == 'User' )
 			{
+				$this->m_user->update_user($NoInduk,$data,'user');
 				redirect('Dashboard');
 			}
 			else if ($this->session->userdata('level') == 'Pending')
@@ -79,10 +88,15 @@ class Admin_SIPL extends CI_Controller {
 		$this->session->set_flashdata('message_login_error', 'Login Gagal, pastikan username dan passwrod benar!');
 		redirect('Login');
 	}
-	public function prosesregistrasi()
+	function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('Login');
+	}
+	public function ProsesRegistrasi()
 	{
 		//$this->load->view('welcome_message');
-		$date = date("Y-m-d");
+		$date = date("Y-m-d H:m:s");
 		$config['upload_path']         = FCPATH.'assets/images/';  // folder upload
 		$config['allowed_types']        = 'gif|jpg|jpeg|png'; // jenis file
 		$config['overwrite']            = true;
@@ -119,16 +133,17 @@ class Admin_SIPL extends CI_Controller {
 			'password' => md5($this->input->post('Password')),
 			'level' => "Pending",
 			'button' => "btn-danger",
-			'tgl_registrasi' => $date
+			'created' => $date,
+			'updated' => $date
 		);
 		$this->m_user->auth_registrasi($data_member);
 		$this->session->set_flashdata('message_login_success', 'Registrasi berhasil, akun anda sedang di validasi oleh admin !');
 		redirect('Login');
 	}
-	function prosesupdate($id)
+	function ProsesUpdate()
 	{
 		$NoInduk = array(
-			'no_identitas' => $id,
+			'no_identitas' =>$this->uri->segment(3),
 		);
 		$Level = $this->input->post('Level');
 		if($Level=="Admin")
@@ -143,23 +158,101 @@ class Admin_SIPL extends CI_Controller {
 		{
 			$Button = "btn-danger";
 		}
+		$date = date("Y-m-d H:m:s");
 		$data = array(
 			'jenis_kelamin' =>$this->input->post('JenisKelamin'),
 			'alamat' =>$this->input->post('Alamat'),
 			'no_handphone' =>$this->input->post('NoHandphone'),
 			'email' => $this->input->post('Email'),
+			'password' => md5($this->input->post('Password')),
+			'level' => $this->input->post('Level'),
+			'button' => $Button,
+			'updated' => $date,
+		);
+		$this->m_user->update_user($NoInduk,$data,'user');
+		$this->session->set_flashdata('message_login_success', 'Selamat, update data berhasil dilakukan !');
+		redirect('Data-Pengguna');
+	}
+	public function ProsesTambahPengguna()
+	{
+		//$this->load->view('welcome_message');
+		$date = date("Y-m-d H:m:s");
+		$config['upload_path']         = FCPATH.'assets/images/';  // folder upload
+		$config['allowed_types']        = 'gif|jpg|jpeg|png'; // jenis file
+		$config['overwrite']            = true;
+		$this->load->library('upload', $config);
+		if ( ! $this->upload->do_upload('Photo')) //sesuai dengan name pada form
+		{
+			$this->upload->display_errors();
+		}
+		else {
+			$UploadPhoto = $this->upload->data();
+			$Photo =$UploadPhoto['file_name'];
+		}
+		$configscan['upload_path']         = FCPATH.'assets/images/';  // folder upload
+		$configscan['allowed_types']        = 'gif|jpg|jpeg|png'; // jenis file
+		$configscan['overwrite']            = true;
+		$this->load->library('upload', $configscan);
+		if ( ! $this->upload->do_upload('ScanIdentitas')) //sesuai dengan name pada form
+		{
+			$this->upload->display_errors();
+		}
+		else {
+			$UploadScanIdentitas = $this->upload->data();
+			$ScanIdentitas = $UploadScanIdentitas['file_name'];
+		}
+		$Level = $this->input->post('Level');
+		if($Level=="Admin")
+		{
+			$Button = "btn-success";
+		}
+		else if($Level=="User")
+		{
+			$Button = "btn-warning";
+		}
+		else
+		{
+			$Button = "btn-danger";
+		}
+		$data_member = array(
+			'no_identitas' =>$this->input->post('NoIdentitas'),
+			'nama' =>$this->input->post('Nama'),
+			'jenis_kelamin' =>$this->input->post('JenisKelamin'),
+			'alamat' =>$this->input->post('Alamat'),
+			'no_handphone' =>$this->input->post('NoHandphone'),
+			'email' =>$this->input->post('Email'),
 			'photo' => $Photo,
 			'scan_identitas' => $ScanIdentitas,
 			'password' => md5($this->input->post('Password')),
 			'level' => $this->input->post('Level'),
 			'button' => $Button,
+			'created' => $date,
+			'updated' => $date
 		);
-		$this->m_user->update_user($NoInduk,$data,'user');
+		$this->m_user->auth_registrasi($data_member);
+		$this->session->set_flashdata('message_login_success', 'Selamat, tambah pengguna berhasil dilakukan !');
 		redirect('Data-Pengguna');
 	}
-	function logout()
-	{
-		$this->session->sess_destroy();
-		redirect('Login');
-	}
+	function DeletePengguna(){
+		$NoIdentitas = $this->uri->segment(4);
+		$check = $this->m_user->search_user($NoIdentitas);
+		if($check->num_rows() == 1){
+			foreach($check->result() as $data){
+				$chek_data = array(
+					'no_identitas' => $data->no_identitas,
+					'photo' => $data->photo,
+					'scan_identitas' => $data->scan_identitas,
+				);
+				$this->session->set_userdata($chek_data);
+			}
+		}
+		@unlink("./assets/images/".$this->session->userdata('photo'));
+		@unlink("./assets/images/".$this->session->userdata('scan_identitas'));
+		$NoInduk = array(
+			'no_identitas' => $this->session->userdata('no_identitas')
+		);
+		$this->m_user->delete_user($NoInduk);
+		$this->session->set_flashdata('message_login_success', 'Selamat, hapus data berhasil dilakukan !');
+    redirect('Data-Pengguna');
+  }
 }

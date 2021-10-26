@@ -21,33 +21,33 @@ class page extends CI_Controller {
 	* map to /index.php/welcome/<method_name>
 	* @see https://codeigniter.com/user_guide/general/urls.html
 	*/
-	public function data_pengguna()
+	public function DataPengguna()
 	{
 		//$this->load->view('welcome_message');
 		$data['user'] = $this->m_user->tmpl_user()->result();
 		view('page._data_pengguna', $data);
 	}
-	public function data_wbp()
+	public function DataWBP()
 	{
 		//$this->load->view('welcome_message');
 		view('page._data_wbp');
 	}
-	public function histori_pendaftar()
+	public function HistoriPendafataran()
 	{
 		//$this->load->view('welcome_message');
 		view('page._data_pendaftaran_layanan');
 	}
-	public function cetak_ticket()
+	public function CetakTiket()
 	{
 		//$this->load->view('welcome_message');
 		view('page._cetak_ticket');
 	}
-	public function  profile()
+	public function  Profile()
 	{
 		//$this->load->view('welcome_message');
 		view('page._profile');
 	}
-	public function  about()
+	public function About()
 	{
 		//$this->load->view('welcome_message');
 		view('page._tentang_aplikasi');
