@@ -43,6 +43,15 @@
 <script src="<?php echo base_url('assets/js/plugins/dataTables/dataTables.bootstrap4.min.js')?>"></script>
 <!-- SUMMERNOTE -->
 <script src="<?php echo base_url('assets/js/plugins/summernote/summernote-bs4.js')?>"></script>
+<script src="<?php echo base_url('assets/js/plugins/iCheck/icheck.min.js')?>"></script>
+        <script>
+            $(document).ready(function () {
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+            });
+        </script>
 <script>
 $(document).ready(function(){
   $('.summernote').summernote();
@@ -67,16 +76,6 @@ $(document).ready(function(){
 
 <script>
 $(document).ready(function() {
-  setTimeout(function() {
-    toastr.options = {
-      closeButton: true,
-      progressBar: true,
-      showMethod: 'slideDown',
-      timeOut: 4000
-    };
-    toastr.success('Selamat Datang di Layanan Keluarga WBP');
-  }, 1300);
-
   var ctx = document.getElementById("myChart").getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'line',
