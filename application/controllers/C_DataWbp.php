@@ -1,11 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require 'vendor/autoload.php';
 
-class Admin_SIPL extends CI_Controller {
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Csv;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+class C_DataWbp extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->helper("file");
-		$this->load->model('m_datawbp','m_user');
+		$this->load->model('m_datawbp');
 	}
 	/**
 	* Index Page for this controller.
@@ -22,44 +26,51 @@ class Admin_SIPL extends CI_Controller {
 	* map to /index.php/welcome/<method_name>
 	* @see https://codeigniter.com/user_guide/general/urls.html
 	*/
-  public function Impor_DataWbp(){
-		if (isset($_FILES["fileExcel"]["name"])) {
-			$path = $_FILES["fileExcel"]["tmp_name"];
-			$object = PHPExcel_IOFactory::load($path);
-			foreach($object->getWorksheetIterator() as $worksheet)
+	public function Import_DataWbp(){
+		$file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+		if(isset($_FILES['file']['name']) && in_array($_FILES['file']['type'], $file_mimes)) {
+
+			$arr_file = explode('.', $_FILES['file']['name']);
+			$extension = end($arr_file);
+			if('csv' == $extension) {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+			} else {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
+			$spreadsheet = $reader->load($_FILES['file']['tmp_name']);
+			$sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, false);
+			$sheetcount=count($sheetData);
+			if($sheetcount>1)
 			{
-				$highestRow = $worksheet->getHighestRow();
-				$highestColumn = $worksheet->getHighestColumn();
-				for($row=2; $row<=$highestRow; $row++)
-				{
-					$NoInduk = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-					$Nama = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
-					$Kejahatan = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
-          $Kamar = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-          $TglMasuk = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
-          $Status = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
-          $Button = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
-					$temp_data[] = array(
-						'no_induk'	=> $NoInduk,
-						'nama'	=> $Nama,
-						'kejahatan'	=> $Kejahatan,
-            'kamar' => $Kamar,
-            'tgl_masuk' => $TglMasuk,
-            'status' => $Status,
-            'button' => $Button
+				for ($i=0; $i <$sheetcount ; $i++) {
+					$NoInduk = $sheetData[$i][0];
+					$Nama = $sheetData[$i][1];
+					$Kejahatan = $sheetData[$i][2];
+					$Kamar = $sheetData[$i][3];
+					$TglMasuk = $sheetData[$i][4];
+					$Status = $sheetData[$i][5];
+					$Button = $sheetData[$i][6];
+					$data[]=array(
+						'no_induk' => $NoInduk,
+						'nama' => $Nama,
+						'kejahatan' => $Kejahatan,
+						'kamar' => $Kejahatan,
+						'tgl_masuk' => $TglMasuk,
+						'status' => $Status,
+						'button' => $Button,
 					);
 				}
+				$insert_datawbp=$this->m_datawbp->insert_datawbp($data);
+				if ($insert_datawbp) {
+					$this->session->set_flashdata('message_pengguna_success', 'Selamat, Updload Data Berhasil !');
+					redirect('Data-WBP');
+				}
+				else {
+					$this->session->set_flashdata('message_pengguna_error', 'Selamat, Maaf Upload Gagal Dilakukan !');
+					redirect('Data-WBP');
+				}
 			}
-			$insert = $this->m_datawbp->insert($temp_data);
-			if($insert){
-				$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-ok"></span> Data Berhasil di Import ke Database');
-				redirect($_SERVER['HTTP_REFERER']);
-			}else{
-				$this->session->set_flashdata('status', '<span class="glyphicon glyphicon-remove"></span> Terjadi Kesalahan');
-				redirect($_SERVER['HTTP_REFERER']);
-			}
-		}else{
-			echo "Tidak ada file yang masuk";
 		}
 	}
 }

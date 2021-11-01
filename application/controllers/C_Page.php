@@ -32,7 +32,7 @@ class C_Page extends CI_Controller {
 	{
 		//$this->load->view('welcome_message');
 		$data['datawbp'] = $this->m_datawbp->tmpl_datawbp()->result();
-		view('page._data_wbp');
+		view('page._data_wbp', $data);
 	}
 	public function HistoriPendafataran()
 	{
