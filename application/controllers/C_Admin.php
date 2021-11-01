@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin_SIPL extends CI_Controller {
+class C_Admin extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->helper("file");
@@ -69,12 +69,12 @@ class Admin_SIPL extends CI_Controller {
 				'no_identitas' =>$username,
 			);
 			$date = date("Y-m-d H:m:s");
-			$data = array(
+			$data_update = array(
 				'updated' => $date,
 			);
 			if ($this->session->userdata('level') == 'Admin' || $this->session->userdata('level') == 'User' )
 			{
-				$this->m_user->update_user($NoInduk,$data,'user');
+				$this->m_user->update_user($NoInduk,$data_update);
 				redirect('Dashboard');
 			}
 			else if ($this->session->userdata('level') == 'Pending')
@@ -170,7 +170,7 @@ class Admin_SIPL extends CI_Controller {
 			'updated' => $date,
 		);
 		$this->m_user->update_user($NoInduk,$data,'user');
-		$this->session->set_flashdata('message_login_success', 'Selamat, update data berhasil dilakukan !');
+		$this->session->set_flashdata('message_pengguna_success', 'Selamat, update data berhasil dilakukan !');
 		redirect('Data-Pengguna');
 	}
 	public function ProsesTambahPengguna()
@@ -230,7 +230,7 @@ class Admin_SIPL extends CI_Controller {
 			'updated' => $date
 		);
 		$this->m_user->auth_registrasi($data_member);
-		$this->session->set_flashdata('message_login_success', 'Selamat, tambah pengguna berhasil dilakukan !');
+		$this->session->set_flashdata('message_pengguna_success', 'Selamat, tambah pengguna berhasil dilakukan !');
 		redirect('Data-Pengguna');
 	}
 	function DeletePengguna(){
@@ -252,7 +252,7 @@ class Admin_SIPL extends CI_Controller {
 			'no_identitas' => $this->session->userdata('no_identitas')
 		);
 		$this->m_user->delete_user($NoInduk);
-		$this->session->set_flashdata('message_login_success', 'Selamat, hapus data berhasil dilakukan !');
+		$this->session->set_flashdata('message_pengguna_success', 'Selamat, hapus data berhasil dilakukan !');
     redirect('Data-Pengguna');
   }
 }
