@@ -1,10 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class page extends CI_Controller {
+class C_Page extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model('m_user');
+		$this->load->model('m_datawbp');
 	}
 	/**
 	* Index Page for this controller.
@@ -30,7 +31,8 @@ class page extends CI_Controller {
 	public function DataWBP()
 	{
 		//$this->load->view('welcome_message');
-		view('page._data_wbp');
+		$data['datawbp'] = $this->m_datawbp->tmpl_datawbp()->result();
+		view('page._data_wbp', $data);
 	}
 	public function HistoriPendafataran()
 	{
@@ -45,7 +47,8 @@ class page extends CI_Controller {
 	public function  Profile()
 	{
 		//$this->load->view('welcome_message');
-		view('page._profile');
+		$data['user'] = $this->m_user->tmpl_user()->result();
+		view('page._profile',$data);
 	}
 	public function About()
 	{

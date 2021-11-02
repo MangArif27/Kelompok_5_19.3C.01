@@ -6,19 +6,18 @@
     <div class="col-lg-12">
       <div class="ibox ">
         <?php $CI = get_instance(); ?>
-        @if($CI->session->flashdata('message_login_error'))
+        @if($CI->session->flashdata('message_pengguna_error'))
         <div class="alert alert-danger col-md-12 alert-dismissable">
           <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-          <a class="alert-link" href="#"><?= $CI->session->flashdata('message_login_error') ?></a>.
+          <a class="alert-link" href="#"><?= $CI->session->flashdata('message_pengguna_success') ?></a>.
         </div>
-        @elseif($CI->session->flashdata('message_login_success'))
+        @elseif($CI->session->flashdata('message_pengguna_success'))
         <div class="alert alert-success col-md-12 alert-dismissable">
           <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-          <a class="alert-link" href="#"><?= $CI->session->flashdata('message_login_success') ?></a>.
+          <a class="alert-link" href="#"><?= $CI->session->flashdata('message_pengguna_success');  ?></a>.
         </div>
         @else
         @endif
-
         <div class="ibox-title">
           <h5>Data Pengguna Sistem Layanan Pemasyarakatan</h5>
           <div class="ibox-tools">
