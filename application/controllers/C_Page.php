@@ -6,6 +6,7 @@ class C_Page extends CI_Controller {
 		parent::__construct();
 		$this->load->model('m_user');
 		$this->load->model('m_datawbp');
+		$this->load->model('m_layanan');
 	}
 	/**
 	* Index Page for this controller.
@@ -43,6 +44,12 @@ class C_Page extends CI_Controller {
 	{
 		//$this->load->view('welcome_message');
 		view('page._cetak_ticket');
+	}
+	public function LayananPendaftaran()
+	{
+		//$this->load->view('welcome_message');
+		$data['layanan'] = $this->m_layanan->tmpl_datapendaftaran()->result();
+		view('page._layanan_pendaftaran',$data);
 	}
 	public function  Profile()
 	{
