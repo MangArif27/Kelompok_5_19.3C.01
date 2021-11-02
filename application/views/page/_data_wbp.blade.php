@@ -41,7 +41,7 @@
                 @foreach($datawbp as $dtwbp)
                 <tr class="gradeX">
                   <td><?php echo $no++ ?></td>
-                  <td><?php echo $dtwbp->nama_wbp_wbp ?></td>
+                  <td><?php echo $dtwbp->nama_wbp ?></td>
                   <td><?php echo $dtwbp->kejahatan ?></td>
                   <td class="center"><?php echo $dtwbp->tgl_masuk ?></td>
                   <td class="center">
