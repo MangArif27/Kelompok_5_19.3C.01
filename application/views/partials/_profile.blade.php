@@ -1,5 +1,5 @@
 <div class="dropdown profile-element">
-  <img alt="image" class="rounded-circle" src="<?php echo base_url('assets/images/'.$data->photo)?>" height="100px"/>
+ <img alt="image" class="rounded-circle" src="<?php echo base_url('assets/images/'.$data->photo)?>" height="100px"/>
   <a data-toggle="dropdown" class="dropdown-toggle" href="#">
     <span class="block m-t-xs font-bold"><?php echo $data->nama; ?></span>
     <span class="text-muted text-xs block"><?php echo $data->no_identitas; ?> <b class="caret"></b></span>
