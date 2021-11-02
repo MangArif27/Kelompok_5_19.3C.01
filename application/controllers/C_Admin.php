@@ -143,7 +143,7 @@ class C_Admin extends CI_Controller {
 	function ProsesUpdate()
 	{
 		$NoInduk = array(
-			'no_identitas' =>$this->uri->segment(3),
+			'no_identitas' =>$this->uri->segment(4),
 		);
 		$Level = $this->input->post('Level');
 		if($Level=="Admin")
@@ -164,7 +164,6 @@ class C_Admin extends CI_Controller {
 			'alamat' =>$this->input->post('Alamat'),
 			'no_handphone' =>$this->input->post('NoHandphone'),
 			'email' => $this->input->post('Email'),
-			'password' => md5($this->input->post('Password')),
 			'level' => $this->input->post('Level'),
 			'button' => $Button,
 			'updated' => $date,

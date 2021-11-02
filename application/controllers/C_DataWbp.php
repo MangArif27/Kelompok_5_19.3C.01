@@ -53,9 +53,9 @@ class C_DataWbp extends CI_Controller {
 					$Button = $sheetData[$i][6];
 					$data[]=array(
 						'no_induk' => $NoInduk,
-						'nama' => $Nama,
+						'nama_wbp' => $Nama,
 						'kejahatan' => $Kejahatan,
-						'kamar' => $Kejahatan,
+						'kamar' => $Kamar,
 						'tgl_masuk' => $TglMasuk,
 						'status' => $Status,
 						'button' => $Button,
@@ -63,14 +63,44 @@ class C_DataWbp extends CI_Controller {
 				}
 				$insert_datawbp=$this->m_datawbp->insert_datawbp($data);
 				if ($insert_datawbp) {
-					$this->session->set_flashdata('message_pengguna_success', 'Selamat, Updload Data Berhasil !');
+					$this->session->set_flashdata('message_datawbp_success', 'Selamat, Updload Data Berhasil !');
 					redirect('Data-WBP');
 				}
 				else {
-					$this->session->set_flashdata('message_pengguna_error', 'Selamat, Maaf Upload Gagal Dilakukan !');
+					$this->session->set_flashdata('message_datawbp_error', 'Selamat, Maaf Upload Gagal Dilakukan !');
 					redirect('Data-WBP');
 				}
 			}
 		}
 	}
+	function ProsesUpdate()
+	{
+		$NoInduk = array(
+			'no_induk' =>$this->uri->segment(4),
+		);
+		$Status = $this->input->post('Status');
+		if($Status=="Tahanan")
+		{
+			$Button = "btn-danger";
+		}
+		else
+		{
+			$Button = "btn-success";
+		}
+		$data = array(
+			'kejahatan' =>$this->input->post('Kejahatan'),
+			'kamar' =>$this->input->post('Kamar'),
+			'status' =>$this->input->post('Status'),
+			'button' => $Button
+		);
+		$this->m_datawbp->update_datawbp($NoInduk,$data,'datawbp');
+		$this->session->set_flashdata('message_datawbp_success', 'Selamat, update data berhasil dilakukan !');
+		redirect('Data-WBP');
+	}
+	function DeleteDataWbp(){
+		$NoInduk = $this->uri->segment(4);
+		$this->m_datawbp->delete_datawbp($NoInduk);
+		$this->session->set_flashdata('message_datawbp_success', 'Selamat, hapus data berhasil dilakukan !');
+    redirect('Data-WBP');
+  }
 }
