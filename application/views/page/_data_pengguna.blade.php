@@ -70,7 +70,7 @@
                                       </div>
                                     </div>
                                     <div class="col-8">
-                                      <form class="m-t" role="form" enctype="multipart/form-data" method="post" action="Proses/Update/<?php echo $usr->no_identitas ?>">
+                                      <form class="m-t" role="form" enctype="multipart/form-data" method="post" action="Proses/Update/Pengguna/<?php echo $usr->no_identitas ?>">
                                         <div class="form-group">
                                           <h3><strong><?php echo $usr->nama ?></strong></h3>
                                         </div>
