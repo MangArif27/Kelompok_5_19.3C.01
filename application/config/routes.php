@@ -61,6 +61,7 @@ $route['Data-Pengguna'] = 'C_Page/DataPengguna';
 $route['Data-WBP'] = 'C_Page/DataWBP';
 $route['Histori-Pendaftaran'] = 'C_Page/HistoriPendafataran';
 $route['Counter-Cetak-Tiket'] = 'C_Page/CetakTiket';
+$route['Layanan-Pendaftaran'] = 'C_Page/LayananPendaftaran';
 $route['Profile'] = 'C_Page/Profile';
 $route['Tentang-Aplikasi'] = 'C_Page/About';
 
@@ -69,9 +70,11 @@ $route['Proses/Login'] = 'C_Admin/ProsesLogin';
 $route['Proses/Registrasi'] = 'C_Admin/ProsesRegistrasi';
 $route['Proses/Logout'] = 'C_Admin/Logout';
 
-$route['Proses/Update/'.$this->uri->segment(3)] = 'C_Admin/ProsesUpdate/'.$this->uri->segment(3);
+$route['Proses/Update/Pengguna/'.$this->uri->segment(4)] = 'C_Admin/ProsesUpdate/'.$this->uri->segment(4);
+$route['Proses/Update/Data-WBP/'.$this->uri->segment(4)] = 'C_DataWbp/ProsesUpdate/'.$this->uri->segment(4);
 
 $route['Proses/Tambah/Pengguna'] = 'C_Admin/ProsesTambahPengguna';
 $route['Proses/Import/Data-Wbp'] = 'C_DataWbp/Import_DataWbp';
 
 $route['Proses/Delete/Pengguna/'.$this->uri->segment(4)] = 'C_Admin/DeletePengguna/'.$this->uri->segment(4);
+$route['Proses/Delete/Data-WBP/'.$this->uri->segment(4)] = 'C_DataWbp/DeleteDataWbp/'.$this->uri->segment(4);
