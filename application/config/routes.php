@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | URI contains no data. In the above example, the "welcome" class
 | would be loaded.
 |
-|	$route['404_override'] = 'errors/page_missing';
+|	$route['404_override'] = 'errors/C_Page_missing';
 |
 | This route will tell the Router which controller/method to use if those
 | provided in the URL cannot be matched to a valid route.
@@ -49,22 +49,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'Admin_SIPL';
+$route['default_controller'] = 'C_Admin';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-//Route Page
-$route['Dashboard'] = 'Admin_SIPL';
-$route['Login'] = 'Admin_SIPL/login';
-$route['Registrasi'] = 'Admin_SIPL/registrasi';
-$route['Data-Pengguna'] = 'page/data_pengguna';
-$route['Data-WBP'] = 'page/data_wbp';
-$route['Histori-Pendaftaran'] = 'page/histori_pendaftar';
-$route['Counter-Cetak-Tiket'] = 'page/cetak_ticket';
-$route['Profile'] = 'page/profile';
-$route['Tentang-Aplikasi'] = 'page/about';
+//Route C_Page
+$route['Dashboard'] = 'C_Admin';
+$route['Login'] = 'C_Admin/Login';
+$route['Registrasi'] = 'C_Admin/Registrasi';
+$route['Data-Pengguna'] = 'C_Page/DataPengguna';
+$route['Data-WBP'] = 'C_Page/DataWBP';
+$route['Histori-Pendaftaran'] = 'C_Page/HistoriPendafataran';
+$route['Counter-Cetak-Tiket'] = 'C_Page/CetakTiket';
+$route['Profile'] = 'C_Page/Profile';
+$route['Tentang-Aplikasi'] = 'C_Page/About';
 
 //Route Proses
-$route['Proses/Login'] = 'Admin_SIPL/proseslogin';
-$route['Proses/Registrasi'] = 'Admin_SIPL/prosesregistrasi';
-$route['Proses/Logout'] = 'Admin_SIPL/logout';
+$route['Proses/Login'] = 'C_Admin/ProsesLogin';
+$route['Proses/Registrasi'] = 'C_Admin/ProsesRegistrasi';
+$route['Proses/Logout'] = 'C_Admin/Logout';
+
+$route['Proses/Update/'.$this->uri->segment(3)] = 'C_Admin/ProsesUpdate/'.$this->uri->segment(3);
+
+$route['Proses/Tambah/Pengguna'] = 'C_Admin/ProsesTambahPengguna';
+$route['Proses/Import/Data-Wbp'] = 'C_DataWbp/Import_DataWbp';
+
+$route['Proses/Delete/Pengguna/'.$this->uri->segment(4)] = 'C_Admin/DeletePengguna/'.$this->uri->segment(4);

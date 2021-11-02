@@ -13,5 +13,7 @@
   <link href="<?php echo base_url('assets/css/animate.css')?>" rel="stylesheet">
   <link href="<?php echo base_url('assets/css/style.css')?>" rel="stylesheet">
   <link href="<?php echo base_url('assets/css/plugins/summernote/summernote-bs4.css')?>" rel="stylesheet">
+  <link href="<?php echo base_url('assets/css/plugins/iCheck/custom.css')?>" rel="stylesheet">
+  <link href="<?php echo base_url('assets/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')?>" rel="stylesheet">
 
 </head>
