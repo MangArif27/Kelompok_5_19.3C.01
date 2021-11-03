@@ -44,14 +44,24 @@
 <!-- SUMMERNOTE -->
 <script src="<?php echo base_url('assets/js/plugins/summernote/summernote-bs4.js')?>"></script>
 <script src="<?php echo base_url('assets/js/plugins/iCheck/icheck.min.js')?>"></script>
-        <script>
-            $(document).ready(function () {
-                $('.i-checks').iCheck({
-                    checkboxClass: 'icheckbox_square-green',
-                    radioClass: 'iradio_square-green',
-                });
-            });
-        </script>
+<!-- Chosen -->
+<script src="<?php echo base_url('assets/js/plugins/chosen/chosen.jquery.js')?>"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url('assets/js/plugins/select2/select2.full.min.js')?>"></script>
+<!-- Data picker -->
+<script src="<?php echo base_url('assets/js/plugins/datapicker/bootstrap-datepicker.js')?>"></script>
+<!-- Date range use moment.js same as full calendar plugin -->
+<script src="<?php echo base_url('assets/js/plugins/fullcalendar/moment.min.js')?>"></script>
+<!-- Date range picker -->
+<script src="<?php echo base_url('assets/js/plugins/daterangepicker/daterangepicker.js')?>"></script>
+<script>
+$(document).ready(function () {
+  $('.i-checks').iCheck({
+    checkboxClass: 'icheckbox_square-green',
+    radioClass: 'iradio_square-green',
+  });
+});
+</script>
 <script>
 $(document).ready(function(){
   $('.summernote').summernote();
@@ -73,7 +83,20 @@ $(document).ready(function(){
 });
 
 </script>
-
+<script>
+$(document).ready(function(){
+  $('.chosen-select').chosen({width: "100%"});
+  var mem = $('#data_1 .input-group.date').datepicker({
+    todayBtn: "linked",
+    keyboardNavigation: false,
+    forceParse: false,
+    calendarWeeks: true,
+    autoclose: true
+  });
+  var yearsAgo = new Date();
+  yearsAgo.setFullYear(yearsAgo.getFullYear() - 20)
+});
+</script>
 <script>
 $(document).ready(function() {
   var ctx = document.getElementById("myChart").getContext('2d');
@@ -116,9 +139,20 @@ $(document).ready(function() {
 });
 </script>
 <script>
-  window.setTimeout(function() {
-    $(".alert").fadeTo(500, 0).slideUp(500, function(){
-      $(this).remove();
-    });
-  }, 5000);
+window.setTimeout(function() {
+  $(".alert").fadeTo(500, 0).slideUp(500, function(){
+    $(this).remove();
+  });
+}, 5000);
+</script>
+<script type="text/javascript">
+const picker = document.getElementById('TglPelaksanaan');
+picker.addEventListener('input', function(e){
+  var day = new Date(this.value).getUTCDay();
+  if([6,0].includes(day)){
+    e.preventDefault();
+    this.value = '';
+    alert('Silahkan Pilih Senin-Jumat');
+  }
+});
 </script>
