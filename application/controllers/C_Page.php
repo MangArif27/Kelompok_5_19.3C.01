@@ -38,7 +38,8 @@ class C_Page extends CI_Controller {
 	public function HistoriPendafataran()
 	{
 		//$this->load->view('welcome_message');
-		view('page._data_pendaftaran_layanan');
+		$data['layanan'] = $this->m_layanan->tmpl_datapendaftaran()->result();
+		view('page._data_pendaftaran_layanan', $data);
 	}
 	public function CetakTiket()
 	{
