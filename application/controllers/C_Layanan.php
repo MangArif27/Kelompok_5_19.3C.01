@@ -22,14 +22,27 @@ class C_Layanan extends CI_Controller {
 	* map to /index.php/welcome/<method_name>
 	* @see https://codeigniter.com/user_guide/general/urls.html
 	*/
-	public function Index()
+	public function InsertPendaftaran()
 	{
-		//$this->load->view('welcome_message');
-		if($this->session->userdata('login') !== 'login'){
-			redirect('Proses/Logout','refresh');
+		$permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $acak= substr(str_shuffle($permitted_chars), 0, 6);
+		$data = array(
+			'no_induk' =>$this->input->post('NoInduk'),
+			'no_identitas' =>$this->input->post('NoIdentitas'),
+			'tgl_pelaksanaan' =>$this->input->post('TglPelaksanaan'),
+			'jenis_layanan' =>$this->input->post('JenisLayanan'),
+			'tiket' => $acak,
+			'status_layanan' => "Proses",
+			'button' => "btn-warning",
+		);
+		$insert_datawbp=$this->m_layanan->insert_pendaftaran($data);
+		if ($insert_datawbp) {
+			$this->session->set_flashdata('message_pendaftaran_success', 'Selamat, anda berhasil mendaftar !');
+			redirect('Layanan-Pendaftaran');
 		}
 		else {
-			view('page._dashboard');
+			$this->session->set_flashdata('message_pendaftaran_error', 'Selamat, pendaftaran anda gagal !');
+			redirect('Layanan-Pendaftaran');
 		}
 	}
 }
