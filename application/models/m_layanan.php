@@ -3,8 +3,8 @@
 class m_layanan extends CI_Model{
   private $table = "layanan";
 
-  function insert_pendaftaran($data_insert){
-    $sql = $this->db->insert($this->table, $data_insert);
+  function insert_pendaftaran($data){
+    $sql = $this->db->insert($this->table, $data);
   }
   function tmpl_datapendaftaran(){
     $this->db->select('*');
