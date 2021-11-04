@@ -36,6 +36,7 @@ class C_Layanan extends CI_Controller {
 			'button' => "btn-warning",
 		);
 		$insert_datawbp=$this->m_layanan->insert_pendaftaran($data);
+		if($this->session->userdata('level') == 'User'){
 		if ($insert_datawbp) {
 			$this->session->set_flashdata('message_pendaftaran_success', 'Selamat, anda berhasil mendaftar !');
 			redirect('Layanan-Pendaftaran');
@@ -43,6 +44,16 @@ class C_Layanan extends CI_Controller {
 		else {
 			$this->session->set_flashdata('message_pendaftaran_error', 'Selamat, pendaftaran anda gagal !');
 			redirect('Layanan-Pendaftaran');
+		}}
+		else {
+			if ($insert_datawbp) {
+				$this->session->set_flashdata('message_pendaftaran_success', 'Selamat, anda berhasil mendaftar !');
+				redirect('Histori-Pendaftaran');
+			}
+			else {
+				$this->session->set_flashdata('message_pendaftaran_error', 'Selamat, pendaftaran anda gagal !');
+				redirect('Histori-Pendaftaran');
+			}
 		}
 	}
 }
