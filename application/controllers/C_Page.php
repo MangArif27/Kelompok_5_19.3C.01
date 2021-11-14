@@ -7,6 +7,7 @@ class C_Page extends CI_Controller {
 		$this->load->model('m_user');
 		$this->load->model('m_datawbp');
 		$this->load->model('m_layanan');
+		$this->load->model('m_about');
 	}
 	/**
 	* Index Page for this controller.
@@ -60,7 +61,7 @@ class C_Page extends CI_Controller {
 	}
 	public function About()
 	{
-		//$this->load->view('welcome_message');
-		view('page._tentang_aplikasi');
+		$data['about'] = $this->m_about->search_about()->result();
+		view('page._tentang_aplikasi', $data);
 	}
 }
