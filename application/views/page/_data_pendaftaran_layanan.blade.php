@@ -12,7 +12,19 @@
           </div>
         </div>
         <div class="ibox-content">
-
+          <?php $CI = get_instance(); ?>
+          @if($CI->session->flashdata('message_pendaftaran_error'))
+          <div class="alert alert-danger col-md-12 alert-dismissable">
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+            <a class="alert-link" href="#"><?= $CI->session->flashdata('message_pendaftaran_error') ?></a>.
+          </div>
+          @elseif($CI->session->flashdata('message_pendaftaran_success'))
+          <div class="alert alert-success col-md-12 alert-dismissable">
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+            <a class="alert-link" href="#"><?= $CI->session->flashdata('message_pendaftaran_success');  ?></a>.
+          </div>
+          @else
+          @endif
           <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover dataTables-example" >
               <thead>
@@ -35,7 +47,7 @@
                   <td class="center"><?php echo $dtlayanan->jenis_layanan?></td>
                   <td class="center"><?php echo $dtlayanan->tiket ?></td>
                   <td class="center">
-                    <button class="btn <?php echo $dtlayanan->button ?> btn-rounded" href="#"><i class="fa fa-eye"></i> <?php echo $dtlayanan->status_layanan ?></button>
+                    <button class="btn <?php echo $dtlayanan->button_layanan ?> btn-rounded" href="#"><i class="fa fa-eye"></i> <?php echo $dtlayanan->status_layanan ?></button>
                   </td>
                 </tr>
                 @endforeach
