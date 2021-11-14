@@ -33,16 +33,12 @@ class C_Layanan extends CI_Controller {
 			'jenis_layanan' =>$this->input->post('JenisLayanan'),
 			'tiket' => $acak,
 			'status_layanan' => "Proses",
-			'button' => "btn-warning",
+			'button_layanan' => "btn-warning",
 		);
 		$insert_datawbp=$this->m_layanan->insert_pendaftaran($data);
 		if($this->session->userdata('level') == 'User'){
 		if ($insert_datawbp) {
 			$this->session->set_flashdata('message_pendaftaran_success', 'Selamat, anda berhasil mendaftar !');
-			redirect('Layanan-Pendaftaran');
-		}
-		else {
-			$this->session->set_flashdata('message_pendaftaran_error', 'Selamat, pendaftaran anda gagal !');
 			redirect('Layanan-Pendaftaran');
 		}}
 		else {
@@ -50,9 +46,34 @@ class C_Layanan extends CI_Controller {
 				$this->session->set_flashdata('message_pendaftaran_success', 'Selamat, anda berhasil mendaftar !');
 				redirect('Histori-Pendaftaran');
 			}
-			else {
-				$this->session->set_flashdata('message_pendaftaran_error', 'Selamat, pendaftaran anda gagal !');
-				redirect('Histori-Pendaftaran');
+		}
+	}
+	function TiketLayanan()
+	{
+		$tiket=$this->input->post('tiket');
+		$today=date("Y-m-d");
+		$check = $this->m_layanan->search_datapendaftaran($tiket);
+		if($check->num_rows() == 1){
+			foreach($check->result() as $data){
+				if($data->tgl_pelaksanaan==$today)
+				{
+					$this->session->set_flashdata('message_tiket_error', 'Maaf Anda Tidak Bisa Mencetak, Silahkan Cetak Tiket Pada Waktu Yang Telah Ditentukan !');
+					redirect('Counter-Cetak-Tiket');
+				}
+				elseif($data->status_layanan=="Selesai")
+				{
+					$this->session->set_flashdata('message_tiket_error', 'Maaf Anda Telah Mencetak Tiket, Untuk Mencetak Kembali Silahkan Hubungi Petugas');
+					redirect('Counter-Cetak-Tiket');
+				}
+				else {
+					$data=array(
+						'status_layanan' => "Selesai",
+						'button_layanan' => "btn-success",
+					);
+					$this->m_layanan->update_tiket($tiket, $data);
+					$data['ticket'] = $this->m_layanan->seacrh_tiket($tiket)->result();
+					view('page._tiket', $data);
+				}
 			}
 		}
 	}
