@@ -4,6 +4,7 @@
 <?php
 $CI = get_instance();
 $level=$_SESSION['level'];
+$About=$CI->m_about->search_about();
 $NoIdentitas=$_SESSION['no_identitas'];
 $check=$CI->m_user->search_user($NoIdentitas);
 if($check->num_rows() == 1){
