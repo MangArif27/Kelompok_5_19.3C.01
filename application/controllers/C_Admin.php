@@ -6,6 +6,7 @@ class C_Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->helper("file");
 		$this->load->model('m_user');
+		$this->load->model('m_about');
 	}
 	/**
 	* Index Page for this controller.
@@ -254,4 +255,22 @@ class C_Admin extends CI_Controller {
 		$this->session->set_flashdata('message_pengguna_success', 'Selamat, hapus data berhasil dilakukan !');
     redirect('Data-Pengguna');
   }
+	function ProsesUpdateAbout()
+	{
+		$Id = array(
+			'id_upt' =>$this->uri->segment(4),
+		);
+		$data = array(
+			'nama_apk' =>$this->input->post('Nama_Apk'),
+			'nama_upt' =>$this->input->post('Nama_Upt'),
+			'alamat' =>$this->input->post('Alamat'),
+			'no_tlp' => $this->input->post('No_Telp'),
+			'email' => $this->input->post('Email'),
+			'website' => $this->input->post('Website'),
+			'tentang_apk' => $this->input->post('summernote')
+		);
+		$this->m_about->update_about($Id,$data);
+		$this->session->set_flashdata('message_pengguna_success', 'Selamat, update data berhasil dilakukan !');
+		redirect('Tentang-Aplikasi');
+	}
 }
