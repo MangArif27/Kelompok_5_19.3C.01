@@ -2,6 +2,9 @@
 
 class m_user extends CI_Model{
   private $table = "user";
+  private $Level = array(
+    'level'=>'User'
+  );
 
   function auth_login($username,$password){
     $sql = $this->db->query("SELECT * FROM $this->table WHERE no_identitas = '$username' AND password = md5('$password') LIMIT 1");
@@ -20,6 +23,9 @@ class m_user extends CI_Model{
   function search_user($NoIdentitas){
     $sql = $this->db->query("SELECT * FROM $this->table WHERE  no_identitas = '$NoIdentitas'");
     return $sql;
+  }
+  function search_user_level(){
+    return $this->db->query("SELECT * FROM $this->table WHERE  level = 'user'");
   }
   function delete_user($NoInduk){
     $this->db->where($NoInduk);

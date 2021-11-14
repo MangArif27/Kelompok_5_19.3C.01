@@ -49,55 +49,28 @@
 </div>
 <?php
 $CI = get_instance();
-$NoIdentitas=$_SESSION['no_identitas'];
-$check=$CI->m_user->search_user($NoIdentitas);
-if($check->num_rows() == 1){
-  foreach($check->result() as $data){
     ?>
     <div class="modal inmodal" id="Tambah" tabindex="-1" role="dialog"  aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-l">
         <div class="modal-content animated fadeIn">
           <div class="modal-header">
             <h5 class="modal-title"> Formulir Layanan Pendaftaran</h5>
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-12">
                 <div class="contact-box">
                   <div class="row">
                     <div class="col-12">
                       <form class="m-t" role="form" enctype="multipart/form-data" method="post" action="Proses/Tambah/Pendaftaran">
                         <div class="form-group">
-                          <input type="text" class="form-control col-12" name="NoIdentitas" value="<?php echo $data->no_identitas; ?>" readonly>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control col-12" name="Nama"  value="<?php echo $data->nama; ?>" readonly>
-                        </div>
-                        <div class="form-group">
-                          <textarea class="form-control col-12" name="Alamat" placeholder="Alamat" readonly><?php echo $data->alamat; ?></textarea>
-                        </div>
-                        <div class="form-group">
-                          <select class="form-control m-b" name="JenisKelamin" readonly>
-                            @if($data->jenis_kelamin == "Laki-Laki")
-                            <option value="Laki-Laki" selected>Laki-Laki</option>
-                            <option value="Perempuan">Perempuan</option>
-                            @else
-                            <option value="Laki-Laki" >Laki-Laki</option>
-                            <option value="Perempuan" selected>Perempuan</option>
-                            @endif
+                          <select data-placeholder="~ Pilih User ~" class="chosen-select form-control"  tabindex="2" name="NoIdentitas">
+                            <option disabled selected>~ Pilih User ~</option>
+                            @foreach($CI->m_user->search_user_level()->result() as $usr)
+                            <option value="<?= $usr->no_identitas; ?>"><?= $usr->nama; ?></option>
+                            @endforeach
                           </select>
                         </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control col-12" name="NoHandphone" value="<?php echo $data->no_handphone; ?>" readonly>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="contact-box">
-                    <div class="row">
-                      <div class="col-12">
                         <div class="form-group">
                           <select data-placeholder="~ Pilih Warga Binaan ~" class="chosen-select form-control"  tabindex="2" name="NoInduk">
                             <option disabled selected>~ Pilih Warga Binaan ~</option>
@@ -130,6 +103,4 @@ if($check->num_rows() == 1){
         </div>
       </div>
     </div>
-  <?php } }
-  ?>
 @endsection
