@@ -5,7 +5,6 @@
     </div>
     <ul class="nav navbar-top-links navbar-right">
       <li style="padding: 20px">
-        <span class="m-r-sm text-muted welcome-message">Selamat Datang di Layanan Keluarga WBP</span>
       </li>
       <li>
         <a href="Proses/Logout">
