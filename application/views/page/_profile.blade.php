@@ -22,8 +22,6 @@
             <input type="number" class="form-control col-12" placeholder="Nomor Handphone" value="<?= $usr->no_handphone ?>">
             <br>
             <input type="email" class="form-control col-12" placeholder="Email" value="<?= $usr->email ?>">
-            <br>
-            <input type="password" class="form-control col-12" placeholder="Password" value="<?= $usr->password ?>">
           </div>
         </div>
       </div>
