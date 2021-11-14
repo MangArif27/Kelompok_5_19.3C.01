@@ -77,6 +77,7 @@ $route['Proses/Update/Tentang-Aplikasi/'.$this->uri->segment(4)] = 'C_Admin/Pros
 $route['Proses/Tambah/Pengguna'] = 'C_Admin/ProsesTambahPengguna';
 $route['Proses/Tambah/Pendaftaran'] = 'C_Layanan/InsertPendaftaran';
 $route['Proses/Import/Data-Wbp'] = 'C_DataWbp/Import_DataWbp';
+$route['Proses/Search/Tiket-Layanan'] = 'C_Layanan/TiketLayanan';
 
 
 $route['Proses/Delete/Pengguna/'.$this->uri->segment(4)] = 'C_Admin/DeletePengguna/'.$this->uri->segment(4);
