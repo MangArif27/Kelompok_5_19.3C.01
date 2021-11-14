@@ -36,7 +36,8 @@ class C_Admin extends CI_Controller {
 	public function Login()
 	{
 		//$this->load->view('welcome_message');
-		view('partials._login');
+		$data['about'] = $this->m_about->search_about()->result();
+		view('partials._login', $data);
 	}
 	public function Registrasi()
 	{
