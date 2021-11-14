@@ -72,6 +72,7 @@ $route['Proses/Logout'] = 'C_Admin/Logout';
 
 $route['Proses/Update/Pengguna/'.$this->uri->segment(4)] = 'C_Admin/ProsesUpdate/'.$this->uri->segment(4);
 $route['Proses/Update/Data-WBP/'.$this->uri->segment(4)] = 'C_DataWbp/ProsesUpdate/'.$this->uri->segment(4);
+$route['Proses/Update/Tentang-Aplikasi/'.$this->uri->segment(4)] = 'C_Admin/ProsesUpdateAbout/'.$this->uri->segment(4);
 
 $route['Proses/Tambah/Pengguna'] = 'C_Admin/ProsesTambahPengguna';
 $route['Proses/Tambah/Pendaftaran'] = 'C_Layanan/InsertPendaftaran';
