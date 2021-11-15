@@ -10,6 +10,7 @@ class m_datawbp extends CI_Model{
 		}
 	}
   function insert_datawbp($data){
+    $this->db->truncate($this->table);
     $this->db->insert_batch($this->table, $data);
     if($this->db->affected_rows()>0)
     {
