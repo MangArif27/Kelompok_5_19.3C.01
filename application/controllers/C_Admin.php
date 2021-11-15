@@ -97,6 +97,13 @@ class C_Admin extends CI_Controller {
 	}
 	public function ProsesRegistrasi()
 	{
+		$NoIdentitas = $this->input->post('NoIdentitas');
+		$check = $this->m_user->search_user($NoIdentitas);
+		if($check->num_rows() > 0){
+			$this->session->set_flashdata('message_login_error', 'Maaf Nomor Identitas yang anda masukan sudah teregistrasi !');
+			redirect('Login');
+		}
+		else {
 		//$this->load->view('welcome_message');
 		$date = date("Y-m-d H:m:s");
 		$config['upload_path']         = FCPATH.'assets/images/';  // folder upload
@@ -138,9 +145,10 @@ class C_Admin extends CI_Controller {
 			'created' => $date,
 			'updated' => $date
 		);
-		$this->m_user->auth_registrasi($data_member);
-		$this->session->set_flashdata('message_login_success', 'Registrasi berhasil, akun anda sedang di validasi oleh admin !');
-		redirect('Login');
+			$this->m_user->auth_registrasi($data_member);
+			$this->session->set_flashdata('message_login_success', 'Registrasi berhasil, akun anda sedang di validasi oleh admin !');
+			redirect('Login');
+		}
 	}
 	function ProsesUpdate()
 	{
@@ -176,6 +184,13 @@ class C_Admin extends CI_Controller {
 	}
 	public function ProsesTambahPengguna()
 	{
+		$NoIdentitas = $this->input->post('NoIdentitas');
+		$check = $this->m_user->search_user($NoIdentitas);
+		if($check->num_rows() > 0){
+			$this->session->set_flashdata('message_pengguna_error', 'Maaf Nomor Identitas yang anda masukan sudah teregistrasi !');
+			redirect('Data-Pengguna');
+		}
+		else {
 		//$this->load->view('welcome_message');
 		$date = date("Y-m-d H:m:s");
 		$config['upload_path']         = FCPATH.'assets/images/';  // folder upload
@@ -230,9 +245,10 @@ class C_Admin extends CI_Controller {
 			'created' => $date,
 			'updated' => $date
 		);
-		$this->m_user->auth_registrasi($data_member);
-		$this->session->set_flashdata('message_pengguna_success', 'Selamat, tambah pengguna berhasil dilakukan !');
-		redirect('Data-Pengguna');
+			$this->m_user->auth_registrasi($data_member);
+			$this->session->set_flashdata('message_pengguna_success', 'Selamat, Berhasil menambahkan pengguna baru !');
+			redirect('Data-Pengguna');;
+		}
 	}
 	function DeletePengguna(){
 		$NoIdentitas = $this->uri->segment(4);
