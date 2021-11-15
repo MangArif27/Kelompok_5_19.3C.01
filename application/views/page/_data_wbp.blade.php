@@ -9,12 +9,12 @@
         @if($CI->session->flashdata('message_datawbp_error'))
         <div class="alert alert-danger col-md-12 alert-dismissable">
           <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-          <a class="alert-link" href="#"><?= $CI->session->flashdata('message_pengguna_success') ?></a>.
+          <a class="alert-link" href="#"><?= $CI->session->flashdata('message_datawbp_error') ?></a>.
         </div>
         @elseif($CI->session->flashdata('message_datawbp_success'))
         <div class="alert alert-success col-md-12 alert-dismissable">
           <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-          <a class="alert-link" href="#"><?= $CI->session->flashdata('message_pengguna_success');  ?></a>.
+          <a class="alert-link" href="#"><?= $CI->session->flashdata('message_datawbp_success');  ?></a>.
         </div>
         @else
         @endif
@@ -65,7 +65,7 @@
                                     <div class="col-8">
                                       <form class="m-t" role="form" enctype="multipart/form-data" method="post" action="Proses/Update/Data-WBP/<?php echo $dtwbp->no_induk ?>">
                                         <div class="form-group">
-                                          <h3><strong><?php echo $dtwbp->nama_wbp_wbp ?></strong></h3>
+                                          <h3><strong><?php echo $dtwbp->nama_wbp ?></strong></h3>
                                         </div>
                                         <div class="form-group">
                                           <input type="text" class="form-control col-12" name="Kejahatan" value="<?php echo $dtwbp->kejahatan?>">
@@ -168,7 +168,7 @@
                                       </div>
                                     </div>
                                     <div class="col-8">
-                                      <form class="m-t" role="form" enctype="multipart/form-data" method="post">
+                                      <form class="m-t" role="form" action="Proses/Delete/Data-WBP/<?php echo $dtwbp->no_induk ?>" enctype="multipart/form-data" method="post">
                                         <div class="form-group">
                                           <h3><strong><?php echo $dtwbp->nama_wbp ?></strong></h3>
                                         </div>

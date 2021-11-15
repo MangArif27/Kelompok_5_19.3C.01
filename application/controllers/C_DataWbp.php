@@ -98,7 +98,9 @@ class C_DataWbp extends CI_Controller {
 		redirect('Data-WBP');
 	}
 	function DeleteDataWbp(){
-		$NoInduk = $this->uri->segment(4);
+		$NoInduk = array(
+			'no_induk' =>$this->uri->segment(4),
+		);
 		$this->m_datawbp->delete_datawbp($NoInduk);
 		$this->session->set_flashdata('message_datawbp_success', 'Selamat, hapus data berhasil dilakukan !');
     redirect('Data-WBP');
