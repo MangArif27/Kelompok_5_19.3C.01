@@ -263,8 +263,6 @@ class C_Admin extends CI_Controller {
 				$this->session->set_userdata($chek_data);
 			}
 		}
-		@unlink("./assets/images/".$this->session->userdata('photo'));
-		@unlink("./assets/images/".$this->session->userdata('scan_identitas'));
 		$NoInduk = array(
 			'no_identitas' => $this->session->userdata('no_identitas')
 		);

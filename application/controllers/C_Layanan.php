@@ -37,21 +37,18 @@ class C_Layanan extends CI_Controller {
 		);
 		$insert_datawbp=$this->m_layanan->insert_pendaftaran($data);
 		if($this->session->userdata('level') == 'User'){
-		if ($insert_datawbp) {
 			$this->session->set_flashdata('message_pendaftaran_success', 'Selamat, anda berhasil mendaftar !');
 			redirect('Layanan-Pendaftaran');
-		}}
+		}
 		else {
-			if ($insert_datawbp) {
 				$this->session->set_flashdata('message_pendaftaran_success', 'Selamat, anda berhasil mendaftar !');
 				redirect('Histori-Pendaftaran');
-			}
 		}
 	}
 	function TiketLayanan()
 	{
 		$tiket=$this->input->post('tiket');
-		$today=date("Y-m-d");
+		$today=date("YYYY-m-d");
 		$check = $this->m_layanan->search_datapendaftaran($tiket);
 		if($check->num_rows() == 1){
 			foreach($check->result() as $data){

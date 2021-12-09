@@ -149,7 +149,7 @@ window.setTimeout(function() {
 const picker = document.getElementById('TglPelaksanaan');
 picker.addEventListener('input', function(e){
   var day = new Date(this.value).getUTCDay();
-  if([6,0].includes(day)){
+  if([6].includes(day)){
     e.preventDefault();
     this.value = '';
     alert('Silahkan Pilih Senin-Jumat');
